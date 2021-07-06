@@ -13,17 +13,23 @@ import os
 #Se crea el entorno scons
 entorno = Environment()
 
+#script Scons
+SConscript(['src/linenoise/Sconscript'])
+SConscript(['src/Sconscript'])
+
+
 #Dependencias implícitas
-entorno.Append(CPPPATH=['include/'])
-
-entorno.Append(LIBS=['liblinenoise','latino','latino_static','-ldl','-lm','-lreadline','-lcurses'])
+#entorno.Append(CPPPATH=['src/linenoise/','include/'])
 
 
-codigoFuente = []
-for archivo in os.listdir("src/"):
-    if(archivo.endswith(".c")):
-        codigoFuente.append("src/"+archivo)
+#entorno.Append(LIBS=['liblinenoise','latino','latino_static','-ldl','-lm','-lreadline','-lcurses'])
+
+
+#codigoFuente = []
+#for archivo in os.listdir("src/"):
+#    if(archivo.endswith(".c")):
+#        codigoFuente.append("src/"+archivo)
 
 
 #se compila latino
-entorno.Program(target='build/latino', source = codigoFuente)
+#entorno.Program(target='build/latino', source = codigoFuente)

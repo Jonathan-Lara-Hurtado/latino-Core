@@ -1,0 +1,16 @@
+import platform
+import os
+
+entorno = Environment()
+
+codigoFuenteC = []
+codigoFuenteO = []
+
+for archivo in os.listdir("."):
+    if(archivo.endswith(".o")):
+        codigoFuenteO.append(archivo)
+    if(archivo.endswith(".c")):
+        codigoFuenteC.append(archivo)
+
+entorno.StaticLibrary(target = "build/latino_static", source = codigoFuenteO)
+entorno.SharedLibrary(target = "build/latino", source = codigoFuenteC)

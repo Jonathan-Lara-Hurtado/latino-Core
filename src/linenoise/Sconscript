@@ -1,0 +1,2 @@
+entorno = Environment()
+entorno.StaticLibrary(target="build/linenoise",source="linenoise.c")

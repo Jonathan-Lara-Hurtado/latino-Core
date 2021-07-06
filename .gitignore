@@ -50,3 +50,9 @@ compiling_error.txt
 <scratch>
 src/latino
 src/liblatino.so
+.sconsign.dblite
+src/latstrlib.os
+src/latpaqlib.os
+src/latlistlib.os
+src/latdiclib.os
+src/latdevlib.os
