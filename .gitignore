@@ -56,3 +56,6 @@ src/latpaqlib.os
 src/latlistlib.os
 src/latdiclib.os
 src/latdevlib.os
+src/latlist.os
+src/latino.os
+src/latgc.os

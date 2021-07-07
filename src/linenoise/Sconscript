@@ -1,2 +1,3 @@
-entorno = Environment()
+Import('entorno')
+
 entorno.StaticLibrary(target="build/linenoise",source="linenoise.c")

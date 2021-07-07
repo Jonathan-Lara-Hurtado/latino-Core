@@ -13,6 +13,11 @@ import os
 #Se crea el entorno scons
 entorno = Environment()
 
+
+entorno.Append(CPPPATH=['linenoise/','..include/'])
+
+Export('entorno')
+
 #script Scons
 SConscript(['src/linenoise/Sconscript'])
 SConscript(['src/Sconscript'])

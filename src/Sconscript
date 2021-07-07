@@ -1,7 +1,9 @@
 import platform
 import os
 
-entorno = Environment()
+Import('entorno')
+
+print(entorno['CPPPATH'])
 
 codigoFuenteC = []
 codigoFuenteO = []
