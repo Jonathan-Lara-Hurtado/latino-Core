@@ -10,32 +10,46 @@
 import platform
 import os
 
+
+ruta_Absoluta = GetLaunchDir()
+ruta_linenoise = os.path.join(ruta_Absoluta,"src/linenoise/")
+ruta_include_latino = os.path.join(ruta_Absoluta,"include/")
+ruta_librerias = os.path.join(ruta_Absoluta,"librerias/")
+
+
+
 #Se crea el entorno scons
 entorno = Environment()
 
+entorno['ruta_librerias'] = ruta_librerias
 
-entorno.Append(CPPPATH=['linenoise/'])
-
+entorno.Append(CPPPATH=[ruta_linenoise,
+                        ruta_include_latino])
 
 Export('entorno')
-
-#script Scons
-SConscript(['src/linenoise/Sconscript'])
 SConscript(['src/Sconscript'])
+SConscript(['src/linenoise/Sconscript'])
 
 
-#Dependencias implícitas
-#entorno.Append(CPPPATH=['src/linenoise/','include/'])
+entorno.Append(LIBPATH=[ruta_librerias])
 
 
-#entorno.Append(LIBS=['liblinenoise','latino','latino_static','-ldl','-lm','-lreadline','-lcurses'])
+entorno.Append(LIBS = ['linenoise',
+                        'latino',
+                        'latino_static',
+                        '-ldl',
+                        '-lm',
+                        '-lreadline',
+                        '-lcurses',
+                        ])
 
 
-#codigoFuente = []
-#for archivo in os.listdir("src/"):
-#    if(archivo.endswith(".c")):
-#        codigoFuente.append("src/"+archivo)
+
+codigoFuente = []
+for archivo in os.listdir("src/"):
+    if(archivo.endswith(".c")):
+        codigoFuente.append("src/"+archivo)
 
 
 #se compila latino
-#entorno.Program(target='build/latino', source = codigoFuente)
+entorno.Program(target='build/latino', source = codigoFuente)

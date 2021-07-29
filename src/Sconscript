@@ -2,7 +2,8 @@ import platform
 import os
 
 Import('entorno')
-entorno.Append(CPPPATH=['../include/'])
+
+ruta_librerias = entorno['ruta_librerias']
 
 
 codigoFuenteC = []
@@ -14,5 +15,5 @@ for archivo in os.listdir("."):
     if(archivo.endswith(".c")):
         codigoFuenteC.append(archivo)
 
-entorno.StaticLibrary(target = "build/latino_static", source = codigoFuenteO)
-entorno.SharedLibrary(target = "build/latino", source = codigoFuenteC)
+entorno.StaticLibrary(target = ruta_librerias+"latino_static", source = codigoFuenteO)
+entorno.SharedLibrary(target = ruta_librerias+"latino", source = codigoFuenteC)

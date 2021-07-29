@@ -1,3 +1,6 @@
 Import('entorno')
 
-entorno.StaticLibrary(target="build/linenoise",source="linenoise.c")
+ruta_librerias = entorno['ruta_librerias']
+entorno.Append(CCFLAGS = '-fPIC')
+
+entorno.StaticLibrary(target=ruta_librerias+"linenoise",source="linenoise.c")
