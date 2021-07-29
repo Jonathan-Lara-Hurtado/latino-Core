@@ -38,11 +38,13 @@
 
 #if (defined __WIN32__) || (defined _WIN32)
 #include "PDCursesMod\curses.h"
+#include "..\include\latcompat.h"
 #else
 #include <curses.h>
+#include "../include/latcompat.h"
 #endif
 
-#include "..\include\latcompat.h"
+
 #include "latino.h"
 // #include "latobj.h"
 

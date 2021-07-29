@@ -14,7 +14,8 @@ import os
 entorno = Environment()
 
 
-entorno.Append(CPPPATH=['linenoise/','..include/'])
+entorno.Append(CPPPATH=['linenoise/'])
+
 
 Export('entorno')
 

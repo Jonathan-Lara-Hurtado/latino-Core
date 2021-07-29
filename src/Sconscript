@@ -2,8 +2,8 @@ import platform
 import os
 
 Import('entorno')
+entorno.Append(CPPPATH=['../include/'])
 
-print(entorno['CPPPATH'])
 
 codigoFuenteC = []
 codigoFuenteO = []
