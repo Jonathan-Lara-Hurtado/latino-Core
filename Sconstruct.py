@@ -19,8 +19,15 @@ ruta_librerias = os.path.join(ruta_Absoluta,"librerias/")
 ruta_latino_regex = os.path.join(ruta_Absoluta,"src/latino-regex/src")
 
 
-#Se crea el entorno scons
-entorno = Environment()
+CambioArquitectura = True
+
+if CambioArquitectura:
+    arquitectura = 'x86_64'
+else:
+    arquitectura = 'x86'
+
+
+entorno = Environment(TARGET_ARCH=arquitectura)
 
 entorno['ruta_librerias'] = ruta_librerias
 
