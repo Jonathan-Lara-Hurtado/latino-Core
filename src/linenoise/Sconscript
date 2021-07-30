@@ -1,6 +1,11 @@
+import platform
+sistema = platform.system()
+
 Import('entorno')
 
 ruta_librerias = entorno['ruta_librerias']
-entorno.Append(CCFLAGS = '-fPIC')
+
+if sistema == "Linux":
+    entorno.Append(CCFLAGS = '-fPIC')
 
 entorno.StaticLibrary(target=ruta_librerias+"linenoise",source="linenoise.c")
