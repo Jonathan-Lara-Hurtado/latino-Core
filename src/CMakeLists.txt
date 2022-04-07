@@ -17,9 +17,9 @@ set(INSTALL_INCLUDE                         ${CMAKE_INSTALL_PREFIX}/include )
 set(INSTALL_LIB                             ${CMAKE_INSTALL_PREFIX}/lib     )
 set(INSTALL_SHARE                           ${CMAKE_INSTALL_PREFIX}/share   )
 
-message(STATUS "INSTALL_BIN: ${INSTALL_BIN}")
-message(STATUS "INSTALL_INCLUDE: ${INSTALL_INCLUDE}")
-message(STATUS "INSTALL_LIB: ${INSTALL_LIB}")
+message(STATUS "INSTALL_BIN:             ${INSTALL_BIN}")
+message(STATUS "INSTALL_INCLUDE:         ${INSTALL_INCLUDE}")
+message(STATUS "INSTALL_LIB:             ${INSTALL_LIB}")
 
 # Set the output folder where your program will be created
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -48,13 +48,6 @@ else()
     link_libraries(readline)
     set(CMAKE_C_FLAGS                       "${CMAKE_C_FLAGS} -D_GNU_SOURCE -Wall -std=c11 -rdynamic -ldl -fPIC"        )
     set(CMAKE_C_FLAGS_DEBUG                 "${CMAKE_C_FLAGS} -D_GNU_SOURCE -g -O0 -Wall -std=c11 -rdynamic -ldl -fPIC" )
-    
-    # # MSYS
-    # if(MSYS)
-    #     message(STATUS "MSYS: ${MSYS}")
-    #     set(CMAKE_SHARED_LIBRARY_PREFIX "")
-    #     set(CMAKE_STATIC_LIBRARY_PREFIX "")
-    # endif()
 endif()
 
 
@@ -78,10 +71,9 @@ add_definitions(-D_DEBUG -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STD
 add_subdirectory(linenoise)
 
 if(WIN32)
-    message(STATUS "CURRENT PATH WIN32.......... ${CMAKE_CURRENT_SOURCE_DIR}")
+    message(STATUS "CURRENT PATH WIN32....... ${CMAKE_CURRENT_SOURCE_DIR}")
     include_directories(latino-regex/src)
     add_subdirectory(latino-regex)
-    set(VS_RESOURCES vs_resources/latino.rc vs_resources/latino.aps vs_resources/resource.h ../logo/icon_build.ico)
 endif()
 
 include_directories(linenoise)
@@ -95,22 +87,20 @@ latmathlib.c latsyslib.c latpaqlib.c latdevlib.c latuilib.c
 #extra
 linenoise/utf8.c linenoise/linenoise.c)
 
-set(SRC_LATINO ${SRC_LIB})
-
 if(MSVC)
-    add_executable(latino ${SRC_LATINO} ${SRC_LIB} ${VS_RESOURCES})
+    add_executable(${PROJECT_NAME} ${SRC_LIB} vs_resources/latino.rc)
 else()
-    add_executable(latino ${SRC_LATINO} ${SRC_LIB})
+    add_executable(${PROJECT_NAME} ${SRC_LIB})
 endif(MSVC)
 
-target_link_libraries(latino LINK_PUBLIC ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${CMAKE_DL_LIBS})
 
 if(MSVC)
     SET ( CMAKE_SHARED_LINKER_FLAGS /MANIFEST:NO )
 
     message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
     link_directories("${CMAKE_CURRENT_BINARY_DIR}/../latino-regex/src/${CMAKE_BUILD_TYPE}")
-    target_link_libraries(latino regex2)
+    target_link_libraries(${PROJECT_NAME} regex2)
     link_libraries(regex2)
     set(LATINO_DEF latino.def)
 
