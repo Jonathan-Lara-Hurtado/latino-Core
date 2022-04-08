@@ -64,6 +64,7 @@ for archivo in os.listdir("src/"):
 
 entorno.Program(target='build/latino', source = codigoFuente)
 
+
 '''
 import platform
 import os
