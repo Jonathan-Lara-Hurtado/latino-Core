@@ -30,6 +30,9 @@ entorno.Append(CPPPATH=[ruta_linenoise,
 Export('entorno','ruta_librerias')
 SConscript('src/linenoise/Sconscript.py')
 
+SConscript('latino-regex/Sconscript.py')
+
+'''
 entorno.Append(LIBS = ['linenoise'])
 
 if sistema == "Windows":
@@ -64,6 +67,7 @@ for archivo in os.listdir("src/"):
 
 entorno.Program(target='build/latino', source = codigoFuente)
 
+'''
 
 '''
 import platform
