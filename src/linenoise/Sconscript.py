@@ -1,9 +1,10 @@
+print('[Mensaje] Generando libreria estatica linenoise')
+
 import platform
 sistema = platform.system()
 
-Import('entorno')
+Import('entorno','ruta_librerias')
 
-ruta_librerias = entorno['ruta_librerias']
 
 if sistema == "Linux":
     entorno.Append(CCFLAGS = '-fPIC')

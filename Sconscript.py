@@ -21,7 +21,15 @@ ruta_librerias = os.path.join(ruta_Absoluta,"latino-core/librerias/")
 
 entorno['TARGET_ARCH'] = arquitectura
 
-print(entorno['TARGET_ARCH'])
+entorno.Append(LIBPATH=[ruta_librerias])
+entorno.Append(CPPPATH=[ruta_linenoise,
+                        ruta_include_latino,
+                        ruta_regex])
+
+
+Export('entorno','ruta_librerias')
+SConscript(['src/linenoise/Sconscript.py'])
+
 
 
 
