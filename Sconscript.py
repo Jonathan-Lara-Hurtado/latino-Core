@@ -13,10 +13,10 @@ import os
 
 sistema = platform.system()
 ruta_Absoluta = GetLaunchDir()
-ruta_linenoise = os.path.join(ruta_Absoluta,"latino-core/src/linenoise/")
-ruta_include_latino = os.path.join(ruta_Absoluta,"latino-core/include/")
-ruta_regex = os.path.join(ruta_Absoluta,"latino-core/latino-regex/src/")
-ruta_librerias = os.path.join(ruta_Absoluta,"latino-core/librerias/")
+ruta_linenoise = os.path.join(ruta_Absoluta,"latino-Core/src/linenoise/")
+ruta_include_latino = os.path.join(ruta_Absoluta,"latino-Core/include/")
+ruta_regex = os.path.join(ruta_Absoluta,"latino-Core/latino-regex/src/")
+ruta_librerias = os.path.join(ruta_Absoluta,"latino-Core/librerias/")
 
 
 entorno['TARGET_ARCH'] = arquitectura
@@ -29,6 +29,7 @@ entorno.Append(CPPPATH=[ruta_linenoise,
 
 Export('entorno','ruta_librerias')
 SConscript('src/linenoise/Sconscript.py')
+
 entorno.Append(LIBS = ['linenoise'])
 
 if sistema == "Windows":
@@ -37,24 +38,31 @@ if sistema == "Windows":
 
 
 
+SConscript(['src/Sconscript.py'])
 
-#SConscript(['src/Sconscript.py'])
 
-
-#if sistema == "Linux":
- #   entorno.Append(LIBS = ['linenoise',
-  #                          'latino',
-   #                         'latino_static',
-    #                        '-ldl',
-     #                       '-lm',
-      #                      '-lreadline',
-       #                     '-lcurses',
-        #                    ])
-
+if sistema == "Linux":
+    entorno.Append(LIBS = ['linenoise',
+                             'latino',
+                             'latino_static',
+                            '-ldl',
+                            '-lm',
+                            '-lreadline',
+                            '-lcurses',
+                            ])
 
 
 
+codigoFuente = []
+for archivo in os.listdir("src/"):
+    if(archivo.endswith(".c")):
+        if sistema == "Windows":
+            if(archivo != "latcurseslib.c"):
+                codigoFuente.append("src/"+archivo)
+        else:
+            codigoFuente.append("src/"+archivo)
 
+entorno.Program(target='build/latino', source = codigoFuente)
 
 '''
 import platform

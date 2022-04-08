@@ -10,3 +10,4 @@ if sistema == "Linux":
     entorno.Append(CCFLAGS = '-fPIC')
 
 entorno.StaticLibrary(target=ruta_librerias+"linenoise",source="linenoise.c")
+#entorno.SharedLibrary(target=ruta_librerias+"linenoise",source="linenoise.c")
