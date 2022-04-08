@@ -6,7 +6,7 @@
  ***********************************************************************************/
 
 '''
-
+'''
 import platform
 import os
 
@@ -74,3 +74,4 @@ for archivo in os.listdir("src/"):
 
 #se compila latino
 entorno.Program(target='build/latino', source = codigoFuente)
+'''
