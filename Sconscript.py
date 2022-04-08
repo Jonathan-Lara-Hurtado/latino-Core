@@ -20,8 +20,8 @@ ruta_librerias = os.path.join(ruta_Absoluta,"latino-core/librerias/")
 
 
 entorno['TARGET_ARCH'] = arquitectura
-
 entorno.Append(LIBPATH=[ruta_librerias])
+
 entorno.Append(CPPPATH=[ruta_linenoise,
                         ruta_include_latino,
                         ruta_regex])
@@ -29,8 +29,30 @@ entorno.Append(CPPPATH=[ruta_linenoise,
 
 Export('entorno','ruta_librerias')
 SConscript('src/linenoise/Sconscript.py')
+entorno.Append(LIBS = ['linenoise'])
+
 if sistema == "Windows":
     SConscript('latino-regex/Sconscript.py')
+    entorno['LIBS'].append('regex')
+
+
+
+
+#SConscript(['src/Sconscript.py'])
+
+
+#if sistema == "Linux":
+ #   entorno.Append(LIBS = ['linenoise',
+  #                          'latino',
+   #                         'latino_static',
+    #                        '-ldl',
+     #                       '-lm',
+      #                      '-lreadline',
+       #                     '-lcurses',
+        #                    ])
+
+
+
 
 
 

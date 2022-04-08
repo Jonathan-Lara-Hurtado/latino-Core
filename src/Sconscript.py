@@ -1,9 +1,9 @@
+print('[Mensaje] Generando libreria compartida latino')
 import platform
 import os
 
-Import('entorno')
+Import('entorno','ruta_librerias')
 
-ruta_librerias = entorno['ruta_librerias']
 sistema = platform.system()
 
 
@@ -23,12 +23,17 @@ for archivo in os.listdir("."):
 
 entorno.SharedLibrary(target = ruta_librerias+"latino", source = codigoFuenteC)
 
+print('[Mensaje] Generando libreria estatica latino')
 
 for archivo in os.listdir("."):
     if(archivo.endswith(".obj") or archivo.endswith(".o")):
         codigoFuenteO.append(archivo)
 
 entorno.StaticLibrary(target = ruta_librerias+"latino_static", source = codigoFuenteO)
+
+
+
+
 
 #for archivo in os.listdir("."):
 #    if(archivo.endswith(".c")):
