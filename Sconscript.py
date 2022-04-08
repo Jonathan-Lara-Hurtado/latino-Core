@@ -28,8 +28,9 @@ entorno.Append(CPPPATH=[ruta_linenoise,
 
 
 Export('entorno','ruta_librerias')
-SConscript(['src/linenoise/Sconscript.py'])
-
+SConscript('src/linenoise/Sconscript.py')
+if sistema == "Windows":
+    SConscript('latino-regex/Sconscript.py')
 
 
 
