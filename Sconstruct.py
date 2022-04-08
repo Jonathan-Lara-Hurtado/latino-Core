@@ -6,7 +6,20 @@
  ***********************************************************************************/
 
 '''
-Export('')
+
+Export('Entorno','debug','arquitectura')
+import platform
+import os
+
+sistema = platform.system()
+ruta_Absoluta = GetLaunchDir()
+ruta_linenoise = os.path.join(ruta_Absoluta,"latino-core/src/linenoise/")
+ruta_include_latino = os.path.join(ruta_Absoluta,"latino-core/include/")
+ruta_regex = os.path.join(ruta_Absoluta,"latino-core/latino-regex/src/")
+ruta_librerias = os.path.join(ruta_Absoluta,"latino-core/librerias/")
+
+
+
 '''
 import platform
 import os
