@@ -60,3 +60,5 @@ src/latdevlib.os
 src/latlist.os
 src/latino.os
 src/latgc.os
+src/linenoise/linenoise.obj
+librerias/linenoise.lib
